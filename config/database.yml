@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  min_messages: WARNING
+
+development:
+  <<: *default
+  database: bike_shop_be_development
+  username: postgres
+  password: postgres
+
+production:
+  <<: *default
+  database: <%= ENV["BIKE_SHOP_BE_DATABASE"] %>
+  username: <%= ENV["BIKE_SHOP_BE_DATABASE_USER"] %>
+  password: <%= ENV["BIKE_SHOP_BE_DATABASE_PASSWORD"] %>
+
+test:
+  <<: *default
+  database: bike_shop_be_test
+  username: postgres
+  password: postgres
