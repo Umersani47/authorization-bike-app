@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { url } from '../utils/constant'
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/axoisInstance';
 
 const SignupPage = () => {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -24,15 +22,6 @@ const SignupPage = () => {
     <div className="auth-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        {/* <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label> */}
         <label>
           Email:
           <input

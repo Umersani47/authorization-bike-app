@@ -2,7 +2,6 @@ import axios from 'axios';
 import store from '../store';
 import { url } from './constant';
 
-// Replace with your actual API URL
 const API_URL = url;
 
 const axiosInstance = axios.create({

@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <nav>
       <Link to="/">Home</Link>
-      {(role == 'admin' || role == 'Seller') && <Link to="/admin">Admin Panel</Link>}
+      {(role == 'admin' || role == 'seller' || role == 'seller_assistant') && <Link to="/admin">Admin Panel</Link>}
       {isLoggedIn ? (
         <button className='signout-btn' onClick={handleLogout}>Logout</button>
       )

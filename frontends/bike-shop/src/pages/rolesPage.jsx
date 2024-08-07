@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { url } from '../utils/constant'
-import axios from 'axios';
-import RolePage from './rolePage';
+
 import axiosInstance from '../utils/axoisInstance';
 
 const RolesPage = () => {

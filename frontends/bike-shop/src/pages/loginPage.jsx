@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { url } from '../utils/constant'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../features/auth/authSlice';
@@ -10,7 +8,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,12 +19,7 @@ const LoginPage = () => {
       .catch((error) => {
         console.error('Login error:', error);
       });
-    // axios.post(`${url}/users/sign_in`, { "user": { "email": email, "password": password } })
-    //   .then(response => {
-    //     console.log('Logged in:', response.data);
-    //     navigate('/');  // Redirect to home after login
-    //   })
-    //   .catch(error => console.error('Error logging in:', error));
+
   };
 
   return (

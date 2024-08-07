@@ -6,21 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-role = Role.create(name: 'Admin',
-            permissions: {
-                            "bike_read"=>true,
-                            "bike_create"=>true,
-                            "bike_delete"=>true,
-                            "bike_update"=>true,
-                            "user_read"=>true,
-                            "user_create"=>true,
-                            "user_delete"=>true,
-                            "user_update"=>true,
-                            "history_read"=>true,
-                            "can_purchase"=>false
-                          })
+role = Role.create(name: 'admin',
+            permissions: {})
 
-user = User.create(email: 'umer@gmail.com', password: '123456', role: role)
+user = User.create(email: 'admin@gmail.com', password: '123456', role: role)
 
 bike1 = Bike.create( title: 'Kawasaki',
   image_url: 'https://content2.kawasaki.com/ContentStorage/KMC/ProductTrimGroup/32/b2e9dfe4-2062-49f5-847d-0b585695ec7f.jpg?w=750',

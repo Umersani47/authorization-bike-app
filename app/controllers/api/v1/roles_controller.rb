@@ -1,10 +1,5 @@
 class Api::V1::RolesController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_role, only: [:show, :update, :destroy]
-  before_action :authorize_read, only: [:index]
-  before_action :authorize_create, only: [:create]
-  before_action :authorize_update, only: [:update]
-  before_action :authorize_destroy, only: [:destroy]
 
   def index
     @roles = Role.not_admin
@@ -47,21 +42,4 @@ class Api::V1::RolesController < ApplicationController
   def role_params
     params.require(:role).permit(:name, permissions: {})
   end
-
-  def authorize_read
-    render json: { error: 'Not Authorized' }, status: :forbidden unless has_admin_permissions?
-  end
-
-  def authorize_create
-    render json: { error: 'Not Authorized' }, status: :forbidden unless has_admin_permissions?
-  end
-
-  def authorize_update
-    render json: { error: 'Not Authorized' }, status: :forbidden unless has_admin_permissions?
-  end
-
-  def authorize_destroy
-    render json: { error: 'Not Authorized' }, status: :forbidden unless has_admin_permissions?
-  end
-  
 end

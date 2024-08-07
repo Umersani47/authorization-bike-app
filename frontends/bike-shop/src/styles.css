@@ -297,3 +297,33 @@ a:hover {
   border-radius: 8px;
   font-size: large;
 }
+
+
+.role-inline-label input {
+  width: max-content;
+  margin-right: 30px;
+}
+
+.role-header-label {
+  text-align: center;
+}
+
+.bike-cart-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bike-cart-header h1 {
+  margin: auto;
+  margin-bottom: 43px;
+}
+
+.bike-cart-header button {
+  height: 24px;
+  width: 24px;
+  border-radius: 22px;
+  background: red;
+  border: none;
+  color: white;
+  font-size: medium;
+}

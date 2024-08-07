@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { url } from '../utils/constant';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/axoisInstance';
@@ -8,16 +7,12 @@ const AddRole = () => {
   const [name, setName] = useState('');
   const navigate = useNavigate();
   const [permissions, setPermissions] = useState({
-    bike_create: false,
-    bike_read: false,
-    bike_update: false,
-    bike_delete: false,
-    user_create: false,
-    user_read: false,
-    user_update: false,
-    user_delete: false,
-    history_read: false,
-    can_purchase: false,
+    can_access_bikes_create: false,
+    can_access_bikes_index: false,
+    can_access_bikes_update: false,
+    can_access_bikes_destroy: false,
+    can_access_bikes_purchase_history: false,
+    can_access_bikes_purchase: false,
   });
 
   const handleChange = (event) => {
@@ -50,108 +45,95 @@ const AddRole = () => {
 
   return (
     <div>
-      <h2>Add Role and Permissions</h2>
+      <div className='role-header-label'><h2>Add Role and Permissions</h2></div>
       <form className='role-permission-form' onSubmit={handleSubmit}>
         <label>
           <strong>Role Name:</strong>
-          <select className='role-drop-down'
+          <select
+            className='role-drop-down'
             id="role-select"
             value={name}
             onChange={handleNameChange}
           >
-            <option value="">Select a role</option> {/* Blank option */}
+            <option value="">Select a role</option> { }
             <option value="admin">Admin</option>
             <option value="seller">Seller</option>
             <option value="seller_assistant">Seller Assistant</option>
             <option value="buyer">Buyer</option>
           </select>
-          <p><br /></p>
+        </label>
+        <p><br /></p>
+
+        <label>
           <strong>Bike CRUD Permissions:</strong>
+        </label>
+        <div className="role-inline-label">
           <input
             type="checkbox"
-            name="bike_create"
+            name="can_access_bikes_create"
             checked={permissions.bike_create}
             onChange={handleChange}
           />{' '}
           Create
+        </div>
+        <div className="role-inline-label">
           <input
             type="checkbox"
-            name="bike_read"
+            name="can_access_bikes_index"
             checked={permissions.bike_read}
             onChange={handleChange}
           />{' '}
           Read
+        </div>
+        <div className="role-inline-label">
           <input
             type="checkbox"
-            name="bike_update"
+            name="can_access_bikes_update"
             checked={permissions.bike_update}
             onChange={handleChange}
           />{' '}
           Update
+        </div>
+        <div className="role-inline-label">
           <input
             type="checkbox"
-            name="bike_delete"
+            name="can_access_bikes_destroy"
             checked={permissions.bike_delete}
             onChange={handleChange}
           />{' '}
           Delete
-        </label>
-        <br />
-        <label>
-          <strong>User CRUD Permissions:</strong>
-          <p><br /></p>
-          <input
-            type="checkbox"
-            name="user_create"
-            checked={permissions.user_create}
-            onChange={handleChange}
-          />{' '}
-          Create
-          <input
-            type="checkbox"
-            name="user_read"
-            checked={permissions.user_read}
-            onChange={handleChange}
-          />{' '}
-          Read
-          <input
-            type="checkbox"
-            name="user_update"
-            checked={permissions.user_update}
-            onChange={handleChange}
-          />{' '}
-          Update
-          <input
-            type="checkbox"
-            name="user_delete"
-            checked={permissions.user_delete}
-            onChange={handleChange}
-          />{' '}
-          Delete
-        </label>
-        <br />
+        </div>
+
+        <p><br /></p>
+
         <label>
           <strong>History of Bike Purchase Permissions:</strong>
-          <p><br /></p>
+        </label>
+        <div className="role-inline-label">
           <input
             type="checkbox"
-            name="history_read"
+            name="can_access_bikes_purchase_history"
             checked={permissions.history_read}
             onChange={handleChange}
           />{' '}
           Read
-        </label>
-        <br />
+        </div>
+
+        <p><br /></p>
+
         <label>
           Bike Purchase Permissions:
+        </label>
+        <div className="role-inline-label">
           <input
             type="checkbox"
-            name="can_purchase"
+            name="can_access_bikes_purchase"
             checked={permissions.can_purchase}
             onChange={handleChange}
           />{' '}
           Purchase
-        </label>
+        </div>
+
         <button type="submit">Save Permissions</button>
       </form>
     </div>

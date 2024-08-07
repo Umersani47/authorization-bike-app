@@ -1,9 +1,8 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
+  skip_before_action :check_permissions
+  skip_before_action :authenticate_user!
+
   respond_to :json
-  protect_from_forgery with: :null_session
-  skip_before_action :verify_authenticity_token
 
   private
 

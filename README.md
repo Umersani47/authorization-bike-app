@@ -1,24 +1,49 @@
-# README
+# Bike Shop
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Ruby on Rails 7 application with a ReactJS frontend.
+For more details visit the application documents.
+https://docs.google.com/document/d/1Zd3DQZ6_Jp5rNLjrWhGUlwVOP7NKzDTShZVjdTGQgnI/edit?usp=sharing
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- Ruby: 3.2.2
+- Rails: 7.0.8.4
+- Node.js: 18.1.0
+- Yarn: 1.22.22
 
-* System dependencies
+## Installation
 
-* Configuration
+### Step 1: Clone the repository
 
-* Database creation
+git clone https://github.com/Umersani47/authorization-bike-app.git
+cd authorization-bike-app
 
-* Database initialization
 
-* How to run the test suite
+Using rbenv:
 
-* Services (job queues, cache servers, search engines, etc.)
+rbenv install 3.2.2
+rbenv global 3.2.2
 
-* Deployment instructions
+# For install rails setup visit https://gorails.com/setup/ubuntu/24.04
 
-* ...
+gem install bundler
+
+bundle install
+
+# Install Node.js:
+
+nvm install 18.1.0
+nvm use 18.1.0
+
+npm install -g yarn
+
+yarn install
+
+rails db:setup
+
+## To start Rails server
+rails server
+## To start react frontend
+npm run dev
+
+Default Admin user has been created in the seed.rb with some bikes data.

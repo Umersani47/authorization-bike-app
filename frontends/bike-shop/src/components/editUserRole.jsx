@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../utils/axoisInstance';
 import { url } from '../utils/constant';
@@ -15,15 +14,12 @@ const EditUserRole = () => {
   useEffect(() => {
     const fetchUserAndRoles = async () => {
       try {
-        // Fetch user details
         const userResponse = await axiosInstance.get(`${url}/api/v1/users/${userId}`);
         setUser(userResponse.data);
 
-        // Fetch roles
         const rolesResponse = await axiosInstance.get(`${url}/api/v1/roles`);
         setRoles(rolesResponse.data);
 
-        // Set selected role
         setSelectedRole(userResponse.data.role);
 
         setLoading(false);

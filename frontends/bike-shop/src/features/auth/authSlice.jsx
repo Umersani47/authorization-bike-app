@@ -3,7 +3,6 @@ import axios from 'axios';
 import { url } from '../../utils/constant';
 import axiosInstance from '../../utils/axoisInstance';
 
-// Replace with your actual API URL
 const API_URL = url;
 
 export const login = createAsyncThunk('auth/login', async ({ email, password }, thunkAPI) => {
@@ -11,11 +10,9 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }, 
     const response = await axiosInstance.post(`${API_URL}/users/sign_in`, { user: { email, password } });
     const token = response.data.token;
 
-    // Store token temporarily to use it in the next API call
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-    // Fetch user role
     const roleResponse = await axiosInstance.get(`${API_URL}/api/v1/users/user_role`);
     return { ...response.data, role: roleResponse.data };
   } catch (error) {
@@ -28,7 +25,7 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     token: localStorage.getItem('authToken') || null,
-    role: null,
+    role: localStorage.getItem('authRole') || null,
     loading: false,
     error: null,
   },
@@ -38,6 +35,7 @@ const authSlice = createSlice({
       state.token = null;
       state.role = null;
       localStorage.removeItem('authToken');
+      localStorage.removeItem('authRole');
       delete axios.defaults.headers.common['Authorization'];
       delete axiosInstance.defaults.headers.common['Authorization'];
     }
@@ -54,6 +52,7 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.role = action.payload.role;
         localStorage.setItem('authToken', action.payload.token);
+        localStorage.setItem('authRole', action.payload.role);
         axios.defaults.headers.common['Authorization'] = `Bearer ${action.payload.token}`;
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${action.payload.token}`;
       })

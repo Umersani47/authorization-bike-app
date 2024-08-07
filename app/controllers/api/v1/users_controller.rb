@@ -1,7 +1,6 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate_user!
+  skip_before_action :check_permissions, only: [:user_role]
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :authorize_user, only: [:show, :update, :destroy]
 
   def index
     @users = User.non_admin_or_no_role
@@ -37,10 +36,6 @@ class Api::V1::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def authorize_user
-    render json: { error: 'Not Authorized' }, status: :forbidden unless has_admin_permissions?
   end
 
 end
